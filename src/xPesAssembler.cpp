@@ -3,14 +3,22 @@
 
 // Constructor: initialize variables and buffer pointer
 xPES_Assembler::xPES_Assembler()
+    : m_PID(-1),
+      m_Buffer(nullptr),
+      m_BufferSize(0),
+      m_DataOffset(0),
+      m_LastContinuityCounter(-1),
+      m_Started(false)
 {
     // Optionally, allocate initial memory or leave it for Init()
 }
 
-xPES_Assembler::~xPES_Assembler()
-{
-
-  
+// Destructor: free allocated memory
+xPES_Assembler::~xPES_Assembler() {
+    if (m_Buffer) {
+        delete[] m_Buffer;
+        m_Buffer = nullptr;
+    }
 }
 
 
